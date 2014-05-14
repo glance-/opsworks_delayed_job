@@ -11,4 +11,4 @@ recipe 'opsworks_delayed_job::deploy', 'Deploy delayed_job worker.'
 recipe 'opsworks_delayed_job::undeploy', 'Undeploy delayed_job worker.'
 recipe 'opsworks_delayed_job::stop', 'Stop delayed_job worker.'
 
-depends 'deploy'
+#depends 'deploy'
