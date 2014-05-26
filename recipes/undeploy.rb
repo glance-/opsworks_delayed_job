@@ -8,11 +8,11 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  directory "#{deploy[:deploy_to]}" do
+  directory deploy[:deploy_to] do
     recursive true
     action :delete
     only_if do
-      File.exists?("#{deploy[:deploy_to]}")
+      File.exists?(deploy[:deploy_to])
     end
   end
 end

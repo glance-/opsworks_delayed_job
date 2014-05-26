@@ -32,7 +32,7 @@ node[:deploy].each do |application, deploy|
     source "delayed_job.monitrc.erb"
     variables(:deploy => deploy, :application => application, :delayed_job => node[:delayed_job][application])
 
-    notifies :reload, resources(:service => "monit"), :immediately
+    notifies :reload, "service[monit]", :immediately
   end
 
 end
