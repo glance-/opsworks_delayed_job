@@ -8,7 +8,7 @@ node[:deploy].each do |application, deploy|
 
   # Overwrite the unicorn restart command declared elsewhere
   execute "restart delayed job #{application} worker" do
-    command "#{node[:delayed_job][application][:restart_command]}"
+    command node[:delayed_job][application][:restart_command]
     action :nothing
   end
 

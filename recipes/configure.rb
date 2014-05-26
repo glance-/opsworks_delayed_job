@@ -16,10 +16,10 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     variables(:database => deploy[:database], :environment => deploy[:rails_env])
 
-    notifies :run, resources(:execute => "restart delayed job #{application} worker")
+    notifies :run, "execute[restart delayed job #{application}]"
 
     only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
+      File.exists?(deploy[:deploy_to]) && File.exists?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
 
@@ -34,10 +34,10 @@ node[:deploy].each do |application, deploy|
       :environment => deploy[:rails_env]
     )
 
-    notifies :run, resources(:execute => "restart delayed job #{application} worker")
+    notifies :run, "execute[restart delayed job #{application}]"
 
     only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
+      File.exists?(deploy[:deploy_to]}) && File.exists?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
 end
