@@ -1,7 +1,7 @@
 include_attribute "deploy"
 
 default[:delayed_job] = {}
-default[:delayed_job][:pool_size] = 4
+default[:delayed_job][:pool_size] = 3
 
 case node[:platform_family]
 when 'rhel', 'fedora', 'suse'
@@ -26,4 +26,3 @@ node[:deploy].each do |application, deploy|
   default[:delayed_job][application][:restart_command] = "sudo monit restart -g delayed_job_#{application}_group"
 
 end
-
